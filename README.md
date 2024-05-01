@@ -26,6 +26,12 @@ Após clonar o projeto recomendo usar o do clean install do maven, como abaixo.
 mvn clean install
 ```
 
+Rode o docker compose para instanciar os containers.
+
+```bash
+docker-compose up -d
+```
+
 Após instalado todas as dependências basta pedir a sua IDE que rode o projeto.
 
 ![image](https://github.com/Catrofe/api-parcelamento/assets/82066310/535d01f5-9a09-47dc-b656-cb42668cf653)
