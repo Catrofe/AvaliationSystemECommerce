@@ -11,10 +11,8 @@
 
 - [x] Docker
 - [ ] Kubernetes
-- [ ] CI/CD
-- [ ] Testes de integração
 - [x] Conseguir criar um sistema de Cache
 - [x] Paginação
 - [X] Criar e integrar com mensageria
 - [x] Criar um sistema de logs
-- [ ] Criar um sistema de Observabilidade
+- [x] Criar um sistema de Observabilidade

@@ -17,7 +17,7 @@ public class SqsConfig {
     @Bean
     public SqsAsyncClient sqsAsyncClient() {
         return SqsAsyncClient.builder()
-                .credentialsProvider(ProfileCredentialsProvider.create(profileAws))
+                .credentialsProvider(ProfileCredentialsProvider.create("localstack"))
                 .endpointOverride(URI.create(urlAws))
                 .region(Region.US_EAST_1)
                 .build();
