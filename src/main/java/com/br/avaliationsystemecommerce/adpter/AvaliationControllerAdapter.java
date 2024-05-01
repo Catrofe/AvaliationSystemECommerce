@@ -9,6 +9,7 @@ import com.br.avaliationsystemecommerce.port.AvaliationControllerPort;
 import com.br.avaliationsystemecommerce.service.AvaliationServicePersistence;
 import com.br.avaliationsystemecommerce.service.AvaliationServiceReading;
 import com.br.avaliationsystemecommerce.utils.exceptions.ProductCommentRetrievalException;
+import io.micrometer.core.annotation.Timed;
 import io.swagger.v3.oas.models.parameters.QueryParameter;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
@@ -36,6 +37,7 @@ public class AvaliationControllerAdapter implements AvaliationControllerPort {
     private AvaliationServiceReading avaliationServiceReading;
 
     @Override
+    @Timed(value = "avaliation.createAvaliation", description = "Tempo de resposta do POST createAvaliation")
     public ResponseEntity<?> createAvaliation(AvaliationRequest avaliationRequest) {
         log.info("Creating a new avaliation for product {}", avaliationRequest.productId());
         avaliationServicePersistence.createAvaliation(avaliationRequest);
@@ -43,6 +45,7 @@ public class AvaliationControllerAdapter implements AvaliationControllerPort {
     }
 
     @Override
+    @Timed(value = "avaliation.getCommentsProduct", description = "Tempo de resposta do GET getCommentsProduct")
     public ResponseEntity<AvaliationCommentsOutput> getCommentsProduct(
             @PathVariable Long productId,
             @RequestParam(name = "page", defaultValue = "0", required = false) @Min(0) Integer page
@@ -53,6 +56,7 @@ public class AvaliationControllerAdapter implements AvaliationControllerPort {
     }
 
     @Override
+    @Timed(value = "avaliation.getAverageProduct", description = "Tempo de resposta do GET getAverageProduct")
     public ResponseEntity<AvaliationAverageOutput> getAverageProduct(Long productId) {
         log.info("Getting average for product {}", productId);
         AvaliationAverageOutput response = avaliationServiceReading.getAverageProduct(productId);

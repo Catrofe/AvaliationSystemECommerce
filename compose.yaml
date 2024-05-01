@@ -27,3 +27,21 @@ services:
       - AWS_SECRET_ACCESS_KEY=2QvM4/Tdmf38SkcD/qalvXO4EXAMPLEKEY
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
+  prometheus:
+    container_name: "prometheus"
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - "./prometheus.yml:/etc/prometheus/prometheus.yml:ro"
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    network_mode: "host"
+  grafana:
+    container_name: "grafana"
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana:/etc/grafana/provisioning/datasources
+    network_mode: "host"
